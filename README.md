@@ -91,5 +91,5 @@ The script will:
 
 ## License
 
-This project is open-sourced under the MIT License.
+This project is under the GPL-3.0 license.
 
