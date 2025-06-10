@@ -3,19 +3,22 @@
 
 This repository provides a deep learning pipeline to estimate the width of sliding drops from side-view video data. Our approach leverages a CNN-Transformer architecture with low-dimensional Absolute Position Encoding (ldAPE) optimized for low-information video datasets, achieving high accuracy with reduced computational overhead.
 
+
+![Deep Learning Model Architecture](https://raw.githubusercontent.com/shumaly/Position_Invariant_CNN_Transformer/main/Model%20Structure.png) 
+
 ## Key Contributions
 
-- **VGG8-Inspired Architecture for Low-Information Datasets**  
-  We propose a lightweight convolutional backbone optimized for small, low-information density video datasets.
+- **Position-Invariant Video Processing**  
+  Our proposed method mitigates overfitting due to positional bias and significantly reduces computational load by approximately 84%. It's highly applicable to scientific problems involving the motion of small objects, especially with limited data.
 
-- **ConvTran for Extrinsic Temporal Challenges**  
-  We integrate ConvTran, a state-of-the-art time-series analysis model, to address extrinsic temporal challenges. Additionally, we introduce an enhanced Absolute Position Encoding—termed low-dimensional Absolute Position Encoding (ldAPE)—which improves the dot-product mechanism for more accurate drop width estimation.
+- **Low-Dimensional Absolute Position Encoding (ldAPE)**  
+    Our proposed ldAPE effectively addresses the anisotropic limitations commonly encountered in conventional positional encoding methods for low-dimensional time-series data. Empirically, it outperforms both tAPE and Sin-APE on 32-dimensional data, with theoretical advantages extending up to 128 dimensions.
 
-- **Position-Invariant Frame Processing**  
-  Our methodology effectively removes non-essential regions from video frames, enabling the model to focus on the drop shape and reducing computation by 82%.
+- **Optimized CNN-Transformer Architecture**  
+  We developed a custom VGG8-inspired CNN architecture specifically designed for video datasets characterized by low information density. Coupled with the ConvTran time-series transformer, our model efficiently captures intricate spatiotemporal interactions. We achieved an RMSE of 48.4~µm, corresponding to a low error rate of just 1.7\%. This demonstrates a considerable improvement over previous state-of-the-art models, especially in challenging scenarios involving surface defects.
 
-- **Comprehensive Sliding Drop Dataset**  
-  We provide a diverse dataset of sliding drop videos recorded on various surfaces and viscosities, offering a valuable resource for future research.
+- **Robustness and Interpretability**  
+     Based on Grad-CAM visualizations, we confirmed that our model robustly identifies critical drop features, including subtle edges and reflections. This capability not only improves estimation accuracy but also enhances interpretability, offering insights into the underlying physics of drop-surface interactions.
 
 ## Repository Overview
 
@@ -42,7 +45,7 @@ This repository provides a deep learning pipeline to estimate the width of slidi
 
 1. **Clone this repository:**
    ```bash
-   git clone https://github.com/...
+   git clone https://github.com/shumaly/Position_Invariant_CNN_Transformer
    ```
 2. **Install dependencies:**
    ```bash
