@@ -45,7 +45,7 @@ This repository provides a deep learning pipeline to estimate the width of slidi
 
 1. **Clone this repository:**
    ```bash
-   git clone https://github.com/shumaly/Position_Invariant_CNN_Transformer
+   git clone https://github.com/shumaly/Position_Invariant_CNN_Transformer.git
    ```
 2. **Install dependencies:**
    ```bash
