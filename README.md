@@ -1,5 +1,5 @@
 
-# CNN-Transformer with Low-Dimensional Absolute Position Encoding for Sliding Drop Width Estimation
+# CNN-Transformer with absolute positional encoding optimized for low-dimensional inputs: Applied to estimate sliding drop width
 
 This repository provides a deep learning pipeline to estimate the width of sliding drops from side-view video data. Our approach leverages a CNN-Transformer architecture with low-dimensional Absolute Position Encoding (ldAPE) optimized for low-information video datasets, achieving high accuracy with reduced computational overhead.
 
