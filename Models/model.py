@@ -41,7 +41,7 @@ class Transformer(nn.Module):
 
         if self.Fix_pos_encode == 'Sin':
             self.Fix_Position = tAPE(emb_size, dropout=config['dropout'], max_len=seq_len)
-        elif config['Fix_pos_encode'] == 'Learn':
+        elif self.Fix_pos_encode == 'Learn':
             self.Fix_Position = LearnablePositionalEncoding(emb_size, dropout=config['dropout'], max_len=seq_len)
 
         self.LayerNorm1 = nn.LayerNorm(emb_size, eps=1e-5)
@@ -108,7 +108,7 @@ class ConvTran(nn.Module):
             self.Fix_Position = ldAPE(emb_size, dropout=config['dropout'], max_len=seq_len)
         elif self.Fix_pos_encode == 'Sin':
             self.Fix_Position = AbsolutePositionalEncoding(emb_size, dropout=config['dropout'], max_len=seq_len)
-        elif config['Fix_pos_encode'] == 'Learn':
+        elif self.Fix_pos_encode == 'Learn':
             self.Fix_Position = LearnablePositionalEncoding(emb_size, dropout=config['dropout'], max_len=seq_len)
 
         if self.Rel_pos_encode == 'eRPE':
@@ -178,7 +178,7 @@ class CasualConvTran(nn.Module):
             self.Fix_Position = ldAPE(emb_size, dropout=config['dropout'], max_len=seq_len)
         elif self.Fix_pos_encode == 'Sin':
             self.Fix_Position = AbsolutePositionalEncoding(emb_size, dropout=config['dropout'], max_len=seq_len)
-        elif config['Fix_pos_encode'] == 'Learn':
+        elif self.Fix_pos_encode == 'Learn':
             self.Fix_Position = LearnablePositionalEncoding(emb_size, dropout=config['dropout'], max_len=seq_len)
 
         if self.Rel_pos_encode == 'eRPE':
