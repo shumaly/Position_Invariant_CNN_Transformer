@@ -211,7 +211,7 @@ if __name__ == "__main__":
                         help="Number of heads for ConvTran.")
     parser.add_argument("--dim_ff", type=int, default=128, 
                         help="Feed-forward dimension for ConvTran.")
-    parser.add_argument("--fix_pos_encode", type=str, default="tAPE",
+    parser.add_argument("--fix_pos_encode", type=str, default="ldAPE",
                         help="Fixed positional encoding type for ConvTran.")
     parser.add_argument("--rel_pos_encode", type=str, default="eRPE",
                         help="Relative positional encoding type for ConvTran.")
