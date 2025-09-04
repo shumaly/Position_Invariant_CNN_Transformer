@@ -1,6 +1,6 @@
 import numpy as np
 from torch import nn
-from Models.AbsolutePositionalEncoding import tAPE, AbsolutePositionalEncoding, LearnablePositionalEncoding
+from Models.AbsolutePositionalEncoding import ldAPE, tAPE, AbsolutePositionalEncoding, LearnablePositionalEncoding
 from Models.Attention import Attention, Attention_Rel_Scl, Attention_Rel_Vec
 
 
@@ -104,6 +104,8 @@ class ConvTran(nn.Module):
 
         if self.Fix_pos_encode == 'tAPE':
             self.Fix_Position = tAPE(emb_size, dropout=config['dropout'], max_len=seq_len)
+        elif self.Fix_pos_encode == 'ldAPE':
+            self.Fix_Position = ldAPE(emb_size, dropout=config['dropout'], max_len=seq_len)
         elif self.Fix_pos_encode == 'Sin':
             self.Fix_Position = AbsolutePositionalEncoding(emb_size, dropout=config['dropout'], max_len=seq_len)
         elif config['Fix_pos_encode'] == 'Learn':
@@ -172,8 +174,10 @@ class CasualConvTran(nn.Module):
 
         if self.Fix_pos_encode == 'tAPE':
             self.Fix_Position = tAPE(emb_size, dropout=config['dropout'], max_len=seq_len)
+        if self.Fix_pos_encode == 'ldAPE':
+            self.Fix_Position = ldAPE(emb_size, dropout=config['dropout'], max_len=seq_len)
         elif self.Fix_pos_encode == 'Sin':
-            self.Fix_Position = tAPE(emb_size, dropout=config['dropout'], max_len=seq_len)
+            self.Fix_Position = AbsolutePositionalEncoding(emb_size, dropout=config['dropout'], max_len=seq_len)
         elif config['Fix_pos_encode'] == 'Learn':
             self.Fix_Position = LearnablePositionalEncoding(emb_size, dropout=config['dropout'], max_len=seq_len)
 
