@@ -174,7 +174,7 @@ class CasualConvTran(nn.Module):
 
         if self.Fix_pos_encode == 'tAPE':
             self.Fix_Position = tAPE(emb_size, dropout=config['dropout'], max_len=seq_len)
-        if self.Fix_pos_encode == 'ldAPE':
+        elif self.Fix_pos_encode == 'ldAPE':
             self.Fix_Position = ldAPE(emb_size, dropout=config['dropout'], max_len=seq_len)
         elif self.Fix_pos_encode == 'Sin':
             self.Fix_Position = AbsolutePositionalEncoding(emb_size, dropout=config['dropout'], max_len=seq_len)
