@@ -53,7 +53,7 @@ def main(args):
         "emb_size": 64,
         "num_heads": 4,
         "dim_ff": 128,
-        "Fix_pos_encode": "tAPE",
+        "Fix_pos_encode": "ldAPE",
         "Rel_pos_encode": "eRPE",
         "dropout": 0,
         "num_labels": 1
