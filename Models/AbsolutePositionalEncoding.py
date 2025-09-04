@@ -25,10 +25,10 @@ class tAPE(nn.Module):
         self.dropout = nn.Dropout(p=dropout)
         pe = torch.zeros(max_len, d_model)  # positional encoding
         position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
-        div_term = torch.exp(torch.arange(0, d_model, 2).float() * (-math.log(35.0) / d_model))
+        div_term = torch.exp(torch.arange(0, d_model, 2).float() * (-math.log(10000.0) / d_model))
 
-        pe[:, 0::2] = torch.sin((position * div_term) *2* d_model **(1/2)/max_len )
-        pe[:, 1::2] = torch.cos((position * div_term) *2* d_model **(1/2)/max_len )
+        pe[:, 0::2] = torch.sin((position * div_term)*(d_model/max_len))
+        pe[:, 1::2] = torch.cos((position * div_term)*(d_model/max_len))
         pe = scale_factor * pe.unsqueeze(0)
         self.register_buffer('pe', pe)  # this stores the variable in the state_dict (used for non-trainable variables)
 
@@ -42,7 +42,44 @@ class tAPE(nn.Module):
         """
         x = x + self.pe
         return self.dropout(x)
+        
+class ldAPE(nn.Module):
+    r"""Inject low-dimensional absolute positional information using scaled sinusoidal encoding.
 
+    .. math::
+        \text{ldAPE}(pos, 2i) = sin(pos / 35^(2i/d_model)) * 2 * sqrt(d_model) / max_len
+        \text{ldAPE}(pos, 2i+1) = cos(pos / 35^(2i/d_model)) * 2 * sqrt(d_model) / max_len
+        \text{where pos is the position index and i is the embedding index}
+
+    Args:
+        d_model: the embedding dimension (required).
+        dropout: the dropout value (default=0.1).
+        max_len: the max. length of the incoming sequence (default=1024).
+        scale_factor: an optional multiplier for the positional encoding (default=1.0).
+    """
+
+    def __init__(self, d_model, dropout=0.1, max_len=1024, scale_factor=1.0):
+        super(ldAPE, self).__init__()
+        self.dropout = nn.Dropout(p=dropout)
+        pe = torch.zeros(max_len, d_model)  # positional encoding
+        position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
+        div_term = torch.exp(torch.arange(0, d_model, 2).float() * (-math.log(35.0) / d_model))
+
+        pe[:, 0::2] = torch.sin((position * div_term) * 2 * d_model ** 0.5 / max_len)
+        pe[:, 1::2] = torch.cos((position * div_term) * 2 * d_model ** 0.5 / max_len)
+        pe = scale_factor * pe.unsqueeze(0)
+        self.register_buffer('pe', pe)  # this stores the variable in the state_dict (non-trainable)
+
+    def forward(self, x):
+        r"""Inputs of forward function
+        Args:
+            x: the sequence fed to the positional encoder model (required).
+        Shape:
+            x: [batch size, sequence length, embed dim]
+            output: [batch size, sequence length, embed dim]
+        """
+        x = x + self.pe
+        return self.dropout(x)
 
 class AbsolutePositionalEncoding(nn.Module):
     r"""Inject some information about the relative or absolute position of the tokens
