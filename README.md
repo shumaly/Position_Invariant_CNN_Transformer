@@ -20,6 +20,10 @@ This repository provides a deep learning pipeline to estimate the width of slidi
 - **Robustness and Interpretability**  
   Grad-CAM visualizations confirmed reliable identification of key drop features, including subtle edges and reflections, improving both estimation accuracy and interpretability while offering insight into drop-surface interaction physics.
 
+
+## Video Abstract
+https://github.com/user-attachments/assets/9c83e431-317a-4b4d-b2ed-ba60e2b30870
+
 ## Repository Overview
 
 - **Models/**  
