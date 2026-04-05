@@ -9,16 +9,16 @@ This repository provides a deep learning pipeline to estimate the width of slidi
 ## Key Contributions
 
 - **Position-Invariant Video Processing**  
-  Our proposed method mitigates overfitting due to positional bias and significantly reduces computational load by approximately 84%. It's highly applicable to scientific problems involving the motion of small objects, especially with limited data.
+  Reduced overfitting from positional bias and lowered computational cost by about 84%. Well suited for scientific video analysis of small moving objects, especially with limited data.
 
 - **Low-Dimensional Absolute Position Encoding (ldAPE)**  
-    Our proposed ldAPE effectively addresses the anisotropic limitations commonly encountered in conventional positional encoding methods for low-dimensional time-series data. Empirically, it outperforms both tAPE and Sin-APE on 32-dimensional data, with theoretical advantages extending up to 128 dimensions.
+  Addressed anisotropic limitations of conventional positional encodings in low-dimensional time-series data. Outperformed both tAPE and Sin-APE on 32-dimensional inputs, with theoretical advantages up to 128 dimensions.
 
 - **Optimized CNN-Transformer Architecture**  
-  We developed a custom VGG8-inspired CNN architecture specifically designed for video datasets characterized by low information density. Coupled with the ConvTran time-series transformer, our model efficiently captures intricate spatiotemporal interactions. We achieved an RMSE of 48.4~µm, corresponding to a low error rate of just 1.7\%. This demonstrates a considerable improvement over previous state-of-the-art models, especially in challenging scenarios involving surface defects.
+  A VGG8-inspired CNN combined with ConvTran captured complex spatiotemporal interactions efficiently. Achieved an RMSE of 48.4 µm, corresponding to an error of 1.7%, and improved on previous state-of-the-art models, especially in defect-related cases.
 
 - **Robustness and Interpretability**  
-     Based on Grad-CAM visualizations, we confirmed that our model robustly identifies critical drop features, including subtle edges and reflections. This capability not only improves estimation accuracy but also enhances interpretability, offering insights into the underlying physics of drop-surface interactions.
+  Grad-CAM visualizations confirmed reliable identification of key drop features, including subtle edges and reflections, improving both estimation accuracy and interpretability while offering insight into drop-surface interaction physics.
 
 ## Repository Overview
 
